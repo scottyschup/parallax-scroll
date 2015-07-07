@@ -18,7 +18,6 @@
         .css({
           "background": "url(" + opts.backgroundImgUrl + ")",
           "background-size": "cover",
-          "-webkit-background-size": "cover",
           "background-position": "center",
           "position": "fixed",
           "width": "100%",

@@ -1,8 +1,9 @@
 body {
   background-color: rgba(100, 100, 100, 1);
+  font-family: Palatino, sans-serif;
   margin: 0;
   padding: 0;
-  font-family: Palatino, sans-serif;
+  position: relative;
 }
 
 h1 {
@@ -46,8 +47,12 @@ a:hover {
 
 section {
   top: 50px;
-  position: absolute;
+  position: relative;
   font-size: 3vw;
+}
+
+footer {
+  position: relative;
 }
 
 #fade {
