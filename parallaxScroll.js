@@ -7,15 +7,42 @@
     return;
   } else {
     window.jQPS = $.fn.ParallaxScroll = function (opts) {
-      this.$container = $("#" + opts.containerId);
-      this.$contentDiv = $("<div>")
-        .addClass("content")
-        .html(this.$container.html());
+      this.opts = opts;
 
+      this.setScrollSpeed();
+
+      this.$container = $("#" + this.opts.containerId);
+      this.setupContentDiv();
+      this.setupBackgroundDiv();
+
+      this.$container
+        .html(this.$backgroundDiv)
+        .append(this.$contentDiv);
+
+      this.setupFadeElement();
+
+      // these need to occur after all other DOM manipulations
+      this.height = $(document).height();
+      this.viewport = $(window).height();
+      this.$backgroundDiv.css("height", this.height + "px");
+
+
+      this.scroll();
+    };
+
+    jQPS.prototype.setScrollSpeed = function () {
+      if (this.opts.scrollSpeed !== void 0) {
+        this.scrollSpeed = this.opts.scrollSpeed;
+      } else {
+        this.scrollSpeed = 2;
+      }
+    };
+
+    jQPS.prototype.setupBackgroundDiv = function () {
       this.$backgroundDiv = $("<div>")
         .addClass("background")
         .css({
-          "background": "url(" + opts.backgroundImgUrl + ")",
+          "background": "url(" + this.opts.backgroundImgUrl + ")",
           "background-size": "cover",
           "background-position": "center",
           "position": "fixed",
@@ -23,35 +50,23 @@
           "width": "100%",
           "z-index": "-1"
         });
+    };
 
-      this.$container
-        .html(this.$backgroundDiv)
-        .append(this.$contentDiv);
+    jQPS.prototype.setupContentDiv = function () {
+      this.$contentDiv = $("<div>")
+        .addClass("content")
+        .html(this.$container.html());
+    };
 
-      this.height = $(document).height();
-      this.viewport = $(window).height();
-
-      if (opts.fadeElementId !== void 0) {
-        this.$fadeElement = $("#" + opts.fadeElementId)
+    jQPS.prototype.setupFadeElement = function () {
+      if (this.opts.fadeElementId !== void 0) {
+        this.$fadeElement = $("#" + this.opts.fadeElementId)
           .css({
             "font-size": "100%"
           });
       } else {
         this.$fadeElement = null;
       }
-
-      if (opts.scrollSpeed !== void 0) {
-        this.scrollSpeed = opts.scrollSpeed;
-      } else {
-        this.scrollSpeed = 2;
-      }
-
-      this.setBackgroundHeight();
-      this.scroll();
-    };
-
-    jQPS.prototype.setBackgroundHeight = function () {
-      this.$backgroundDiv.css("height", this.height + "px");
     };
 
     jQPS.prototype.scroll = function () {
@@ -60,6 +75,7 @@
         var st = $(this).scrollTop();
         var yDelta = -st / that.scrollSpeed;
         that.$backgroundDiv.css("transform", "translateY(" + yDelta + "px)");
+
         if (that.$fadeElement) {
           var perc = st / that.viewport * 2;
           that.$fadeElement.css("opacity", "calc(1 - " + perc + ")");
