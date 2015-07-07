@@ -20,6 +20,7 @@
           "background-size": "cover",
           "background-position": "center",
           "position": "fixed",
+          "top": "0",
           "width": "100%",
           "z-index": "-1"
         });
@@ -45,8 +46,9 @@
       if (opts.fadeElementId !== void 0) {
         this.$fadeElement = $("#" + opts.fadeElementId)
           .css({
-            // "position": "fixed",
-          })
+            "min-width": "600px",
+            "font-size": "100%"
+          });
       } else {
         this.$fadeElement = null;
       }
@@ -72,7 +74,7 @@
         var yDelta = -st / that.scrollSpeed;
         that.$backgroundDiv.css("transform", "translateY(" + yDelta + "px)");
         if (that.$fadeElement) {
-          var perc = st / that.viewport * 1.75
+          var perc = st / that.viewport * 2;
           that.$fadeElement.css("opacity", "calc(1 - " + perc + ")");
         }
       });
