@@ -3,10 +3,9 @@
 
 (function () {
   "use strict";
-  if (window.jQPS !== undefined) {
+  if (window.jQPS !== void 0) {
     return;
   } else {
-    // how is $.fn this different from $.prototype?
     window.jQPS = $.fn.ParallaxScroll = function (opts) {
       this.$container = $("#" + opts.containerId);
       this.$contentDiv = $("<div>")
@@ -29,24 +28,12 @@
         .html(this.$backgroundDiv)
         .append(this.$contentDiv);
 
-      // var body = window.document.body;
-      // var html = window.document.documentElement;
-
-      // this.height = Math.max(
-      //   body.scrollHeight,
-      //   body.offsetHeight,
-      //   html.clientHeight,
-      //   html.scrollHeight,
-      //   html.offsetHeight
-      // );
-
       this.height = $(document).height();
       this.viewport = $(window).height();
 
       if (opts.fadeElementId !== void 0) {
         this.$fadeElement = $("#" + opts.fadeElementId)
           .css({
-            "min-width": "600px",
             "font-size": "100%"
           });
       } else {

@@ -2,9 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Parallax Scroll Demo</title>
+  <title>Parallax Scroll</title>
   <link rel="stylesheet" type="text/css" href="style.css">
   <script src="jquery-2.1.3.min.js" type="text/javascript"></script>
+  <!-- include the script tag for parallaxScroll AFTER the jQuery tag -->
   <script src="parallaxScroll.js" type="text/javascript"></script>
 </head>
 
@@ -13,18 +14,24 @@
     <nav>
       <h1>Parallax Scroll Demo</h1>
       <ul>
-        <li><a href="javascript:void(0)">Nav Link 1</a></li>
-        <li><a href="javascript:void(0)">Nav Link 2</a></li>
-        <li><a href="javascript:void(0)">Nav Link 3</a></li>
+        <li><a href="http://github.com/scottyschup/parallax-scroll">Github Repo</a></li>
+        <li><a href="http://scottschupbach.com">Scott's Portfolio</a></li>
+        <li><a href="https://jquery.com/">Get you a jQuery!</a></li>
       </ul>
     </nav>
   </header>
 
+  <!-- All content that is part of the parallax scroll section should be
+  contained in a single div with an id. -->
   <div id="jqps">
+    <!-- An optional div containing contents to be faded out may also be
+    included. It may be inside or outside of the content div, depending on your
+    styling/organizational needs/preferences. -->
     <div id="fade">
       <h1>Scroll down to see the magic!</h1>
       <img src="img/jqps_logo.png">
     </div>
+
     <p>"Lorem ipsum" hic non est. Arma virumque cano, Troiae qui primus ab oris Italiam, fato profugus, Laviniaque venit litora, multum ille et terris iactatus et alto vi superum saevae memorem Iunonis ob iram; multa quoque et bello passus, dum conderet urbem, inferretque deos Latio, genus unde Latinum, Albanique patres, atque altae moenia Romae.</p>
     <p>Musa, mihi causas memora, quo numine laeso, quidve dolens, regina deum tot volvere casus insignem pietate virum, tot adire labores impulerit. Tantaene animis caelestibus irae?</p>
     <p>Urbs antiqua fuit, Tyrii tenuere coloni, Karthago, Italiam contra Tiberinaque longe ostia, dives opum studiisque asperrima belli; quam Iuno fertur terris magis omnibus unam posthabita coluisse Samo; hic illius arma, hic currus fuit; hoc regnum dea gentibus esse, si qua fata sinant, iam tum tenditque fovetque. Progeniem sed enim Troiano a sanguine duci audierat, Tyrias olim quae verteret arces; hinc populum late regem belloque superbum venturum excidio Libyae: sic volvere Parcas. Id metuens, veterisque memor Saturnia belli, quod ad Troiam pro caris gesserat Argis - necdum etiam causae irarum saevique dolores exciderant animo: manet alta mente repostum iudicium Paridis spretaeque iniuria formae, et genus invisum, et rapti Ganymedis honores. His accensa super, iactatos aequore toto Troas, reliquias Danaum atque immitis Achilli, arcebat longe Latio, multosque per annos errabant, acti fatis, maria omnia circum.</p>
@@ -46,7 +53,10 @@
       new jQPS({
         containerId: "jqps",
         backgroundImgUrl: "img/sb_sunset.jpg",
-        fadeElementId: "fade"
+        // fadeElementId is optional
+        fadeElementId: "fade",
+        // as is scrollSpeed, which defaults to 2
+        scrollSpeed: 2.5
       });
     });
   </script>
