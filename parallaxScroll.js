@@ -78,7 +78,8 @@
 
         if (that.$fadeElement) {
           var perc = st / that.viewport * 2;
-          that.$fadeElement.css("opacity", "calc(1 - " + perc + ")");
+          var opacity = 1 - perc;
+          that.$fadeElement.css("opacity", opacity);
         }
       });
     };
